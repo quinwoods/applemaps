@@ -25,6 +25,10 @@ struct MapView: UIViewRepresentable {
         mapView.delegate = context.coordinator
         return mapView
     }
+    /// Needed to conform to UIViewRepresentable Protocol
+    /// - Parameters:
+    ///   - uiView: <#uiView description#>
+    ///   - context: <#context description#>
     func updateUIView(_ uiView: MKMapView, context: Context) {
         
     }

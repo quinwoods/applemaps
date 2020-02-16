@@ -8,14 +8,11 @@
 
 import SwiftUI
 
+/// This allows the view to be seen on the phone
 struct ContentView: View {
-    var body: some View {
-        Text("Hello, World!")
+    var body: some View{
+        MapView()
+            .edgesIgnoringSafeArea(.all)
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}

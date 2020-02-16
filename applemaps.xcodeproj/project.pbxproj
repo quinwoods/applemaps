@@ -13,6 +13,7 @@
 		37E0502D23F467FF000FA3C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37E0502C23F467FF000FA3C2 /* Assets.xcassets */; };
 		37E0503023F467FF000FA3C2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37E0502F23F467FF000FA3C2 /* Preview Assets.xcassets */; };
 		37E0503323F467FF000FA3C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37E0503123F467FF000FA3C2 /* LaunchScreen.storyboard */; };
+		37E0503F23F46AED000FA3C2 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E0503E23F46AED000FA3C2 /* MapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		37E0502F23F467FF000FA3C2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		37E0503223F467FF000FA3C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		37E0503423F467FF000FA3C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		37E0503E23F46AED000FA3C2 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				37E0502623F467FE000FA3C2 /* AppDelegate.swift */,
 				37E0502823F467FE000FA3C2 /* SceneDelegate.swift */,
 				37E0502A23F467FE000FA3C2 /* ContentView.swift */,
+				37E0503E23F46AED000FA3C2 /* MapView.swift */,
 				37E0502C23F467FF000FA3C2 /* Assets.xcassets */,
 				37E0503123F467FF000FA3C2 /* LaunchScreen.storyboard */,
 				37E0503423F467FF000FA3C2 /* Info.plist */,
@@ -147,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				37E0502723F467FE000FA3C2 /* AppDelegate.swift in Sources */,
+				37E0503F23F46AED000FA3C2 /* MapView.swift in Sources */,
 				37E0502923F467FE000FA3C2 /* SceneDelegate.swift in Sources */,
 				37E0502B23F467FE000FA3C2 /* ContentView.swift in Sources */,
 			);
