@@ -14,7 +14,7 @@ import MapKit
 //    static func ==(lhs: Landmark, rhs: Landmark) -> Bool {
 //        lhs.id == rhs.id
 //    }
-//
+//    
 //    let id = UUID().uuidString
 //    let name: String
 //    let location: CLLocationCoordinate2D
@@ -28,9 +28,9 @@ import MapKit
 //          Landmark(name: "Kingwood Recycling Center ", location: .init(latitude: 30.054080, longitude: -95.185520)),
 //          Landmark(name: "Environmental Service Center (ESC) - South", location: .init(latitude: 29.755140, longitude: 95.463150)),
 //    ]
-//
+//    
 //    @State var selectedLandmark: Landmark? = nil
-//
+//    
 //    var body: some View {
 //        ZStack {
 //            MapView(landmarks: $landmarks,
@@ -52,7 +52,7 @@ import MapKit
 //            }
 //        }
 //    }
-//
+//    
 //    private func selectNextLandmark() {
 //        if let selectedLandmark = selectedLandmark, let currentIndex = landmarks.firstIndex(where: { $0 == selectedLandmark }), currentIndex + 1 < landmarks.endIndex {
 //            self.selectedLandmark = landmarks[currentIndex + 1]
@@ -70,36 +70,74 @@ import MapKit
 //}
 //#endif
 //
-//
 struct MapView: UIViewRepresentable {
-  
-  var locationManager = CLLocationManager()
-  func setupManager() {
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest
-    locationManager.requestWhenInUseAuthorization()
-    locationManager.requestAlwaysAuthorization()
-  }
-  
-  func makeUIView(context: Context) -> MKMapView {
-    setupManager()
-    let mapView = MKMapView(frame: UIScreen.main.bounds)
-    mapView.showsUserLocation = true
-    mapView.userTrackingMode = .follow
-    return mapView
-  }
-  
-  func updateUIView(_ uiView: MKMapView, context: Context) {
-  }
+    @Binding var route: MKPolyline?
+    let mapViewDelegate = MapViewDelegate()
+
+    func makeUIView(context: Context) -> MKMapView {
+        MKMapView(frame: .zero)
+    }
+
+    func updateUIView(_ view: MKMapView, context: Context) {
+        view.delegate = mapViewDelegate                          // (1) This should be set in makeUIView, but it is getting reset to `nil`
+        view.translatesAutoresizingMaskIntoConstraints = false   // (2) In the absence of this, we get constraints error on rotation; and again, it seems one should do this in makeUIView, but has to be here
+        addRoute(to: view)
+    }
 }
 
-struct ContentView: View {
-  var body: some View {
-    MapView()
-  }
+private extension MapView {
+    func addRoute(to view: MKMapView) {
+        if !view.overlays.isEmpty {
+            view.removeOverlays(view.overlays)
+        }
+
+        guard let route = route else { return }
+        let mapRect = route.boundingMapRect
+        view.setVisibleMapRect(mapRect, edgePadding: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), animated: true)
+        view.addOverlay(route)
+    }
 }
 
-struct ContentView_Previews: PreviewProvider {
-  static var previews: some View {
-    ContentView()
-  }
+class MapViewDelegate: NSObject, MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.fillColor = UIColor.red.withAlphaComponent(0.5)
+        renderer.strokeColor = UIColor.red.withAlphaComponent(0.8)
+        return renderer
+    }
+}
+
+
+
+struct ContentView : View {
+    @State var route: MKPolyline?
+
+    var body: some View {
+        MapView(route: $route)
+            .onAppear {
+                self.findCoffee()
+        }
+    }
+}
+
+private extension ContentView {
+    func findCoffee() {
+        let start = CLLocationCoordinate2D(latitude: 33.9375, longitude: -84.5203)
+        let region = MKCoordinateRegion(center: start, latitudinalMeters: 2000, longitudinalMeters: 2000)
+
+        let request = MKLocalSearch.Request()
+        request.naturalLanguageQuery = "coffee"
+        request.region = region
+
+        MKLocalSearch(request: request).start { response, error in
+            guard let destination = response?.mapItems.first else { return }
+
+            let request = MKDirections.Request()
+            request.source = MKMapItem(placemark: MKPlacemark(coordinate: start))
+            request.destination = destination
+            MKDirections(request: request).calculate { directionsResponse, _ in
+                self.route = directionsResponse?.routes.first?.polyline
+            }
+        }
+    }
 }
