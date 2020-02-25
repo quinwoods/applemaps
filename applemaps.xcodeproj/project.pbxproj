@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		378D19F024043D5800D913E4 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378D19EF24043D5800D913E4 /* SwiftUIView.swift */; };
 		37E0502723F467FE000FA3C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E0502623F467FE000FA3C2 /* AppDelegate.swift */; };
 		37E0502923F467FE000FA3C2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E0502823F467FE000FA3C2 /* SceneDelegate.swift */; };
 		37E0502B23F467FE000FA3C2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E0502A23F467FE000FA3C2 /* ContentView.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		378D19EF24043D5800D913E4 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		37E0502323F467FE000FA3C2 /* applemaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = applemaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37E0502623F467FE000FA3C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37E0502823F467FE000FA3C2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				37E0502823F467FE000FA3C2 /* SceneDelegate.swift */,
 				37E0502A23F467FE000FA3C2 /* ContentView.swift */,
 				37E0503E23F46AED000FA3C2 /* MapView.swift */,
+				378D19EF24043D5800D913E4 /* SwiftUIView.swift */,
 				37E0502C23F467FF000FA3C2 /* Assets.xcassets */,
 				37E0503123F467FF000FA3C2 /* LaunchScreen.storyboard */,
 				37E0503423F467FF000FA3C2 /* Info.plist */,
@@ -153,6 +156,7 @@
 				37E0503F23F46AED000FA3C2 /* MapView.swift in Sources */,
 				37E0502923F467FE000FA3C2 /* SceneDelegate.swift in Sources */,
 				37E0502B23F467FE000FA3C2 /* ContentView.swift in Sources */,
+				378D19F024043D5800D913E4 /* SwiftUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

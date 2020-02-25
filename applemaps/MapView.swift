@@ -89,3 +89,47 @@
 //        }
 //    }
 //}
+import SwiftUI
+import MapKit
+
+struct MapView: UIViewRepresentable {
+    class Coordinator: NSObject, MKMapViewDelegate{
+        var parent: MapView
+        init(_ parent: MapView){
+            self.parent = parent
+        }
+    }
+    
+    func makeCoordinator() -> MapView.Coordinator {
+        Coordinator(self)
+    }
+    func makeUIView(context: Context) -> MKMapView {
+        let mapView = MKMapView()
+        mapView.delegate = context.coordinator
+        return mapView
+    }
+    func updateUIView(_ uiView: MKMapView, context: Context) {
+        
+    }
+}
+struct Landmark: Equatable {
+    static func ==(lhs: Landmark, rhs: Landmark) -> Bool {
+        lhs.id == rhs.id
+    }
+
+    let id = UUID().uuidString
+    let name: String
+    let location: CLLocationCoordinate2D
+}
+
+class LandmarkAnnotation: NSObject, MKAnnotation {
+    let id: String
+    let title: String?
+    let coordinate: CLLocationCoordinate2D
+
+    init(landmark: Landmark) {
+        self.id = landmark.id
+        self.title = landmark.name
+        self.coordinate = landmark.location
+    }
+}
